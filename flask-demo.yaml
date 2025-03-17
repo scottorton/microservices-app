@@ -4,27 +4,27 @@ kind: Deployment
 
 metadata:
   labels:
-    app: hello-service
+    app: sorton-flask
 
-  name: hello-service
+  name: sorton-flask
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: hello-service
+      app: sorton-flask
 
   template:
     metadata:
       labels:
-        app: hello-service
+        app: sorton-flask
 
     spec:
       containers:
-        - name: hello-service
+        - name: sorton-flask
 
-          image: quay.io/lordofthejars/hello-flask:1.0.0
+          image: europe-west2-docker.pkg.dev/apt-rite-449810-c0/container-images/flask-demo-app:latest
 
           ports:
             - containerPort: 8080
@@ -35,18 +35,20 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: hello-service
+  name: sorton-flask
+  namespace: sorton-flask
 
   labels:
-    app: hello-service
+    app: sorton-flask
 
 spec:
   ports:
     - name: http
 
       port: 8080
+      targetPort: 8080
 
   selector:
-    app: hello-service
+    app: sorton-flask
 
   type: LoadBalancer
