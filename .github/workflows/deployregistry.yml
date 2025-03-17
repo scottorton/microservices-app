@@ -20,12 +20,12 @@ jobs:
         with:
           credentials_json: "${{secrets.GOOGLE_CREDENTIALS}}"
 
-      - name: Docker Authenticate
-        id: docker-auth
-        uses: "docker/login-action@v3"
-        with:
-          username: "oauth2accesstoken"
-          password: "${{ steps.auth.outputs.access_token }}"
+      #   - name: Docker Authenticate
+      #     id: docker-auth
+      #     uses: "docker/login-action@v3"
+      #     with:
+      #       username: "oauth2accesstoken"
+      #       password: "${{ steps.auth.outputs.access_token }}"
 
       - name: Build Container
         run: docker build -t "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./
