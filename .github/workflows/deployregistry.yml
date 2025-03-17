@@ -20,12 +20,13 @@ jobs:
         with:
           credentials_json: "${{secrets.GOOGLE_CREDENTIALS}}"
 
-      - name: Docker Authenticate
-        id: docker-auth
-        uses: "docker/login-action@v3"
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
         with:
-          username: _json_key
-          password: "${{secrets.GOOGLE_CREDENTIALS}}"
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+
+      - name: Configure Docker to use gcloud as a credential helper
+        run: gcloud auth configure-docker ${{ vars.GCP_LOCATION }}-docker.pkg.dev
 
       - name: Build Container
         run: docker build -t "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./
