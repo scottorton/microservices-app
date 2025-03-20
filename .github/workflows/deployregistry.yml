@@ -1,6 +1,7 @@
 name: Push to Artifact Registry
 
-on: [workflow_dispatch]
+on: 
+  pull_request
 
 env:
   IMAGE_NAME: "flask-demo-app"
