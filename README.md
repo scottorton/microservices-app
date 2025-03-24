@@ -1,3 +1,3 @@
 # microservices-app
 
-This will not work
+First step in creating a usable microservices app
