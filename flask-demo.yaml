@@ -11,25 +11,25 @@ kind: Deployment
 
 metadata:
   labels:
-    app: sorton-flask
-
-  name: sorton-flask
+    app: sorton-flask-app
+  name: sorton-flask-app
+  namespace: sorton-flask
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: sorton-flask
+      app: sorton-flask-app
 
   template:
     metadata:
       labels:
-        app: sorton-flask
+        app: sorton-flask-app
 
     spec:
       containers:
-        - name: sorton-flask
+        - name: sorton-flask-container
 
           image: europe-west2-docker.pkg.dev/apt-rite-449810-c0/container-images/flask-demo-app:latest
 
@@ -42,11 +42,11 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: sorton-flask
+  name: sorton-flask-app
   namespace: sorton-flask
 
   labels:
-    app: sorton-flask
+    app: sorton-flask-app
 
 spec:
   ports:
@@ -56,6 +56,6 @@ spec:
       targetPort: 8080
 
   selector:
-    app: sorton-flask
+    app: sorton-flask-app
 
   type: LoadBalancer
