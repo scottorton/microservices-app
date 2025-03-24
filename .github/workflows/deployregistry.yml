@@ -3,7 +3,7 @@ name: Push to Artifact Registry
 on: 
   push:
     branches:
-      - master
+      - main
 
 env:
   IMAGE_NAME: "flask-demo-app"
