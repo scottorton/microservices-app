@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'Dockerfile'
+      - '*.py'
 
 env:
   IMAGE_NAME: "flask-demo-app"
