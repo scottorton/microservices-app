@@ -37,25 +37,25 @@ spec:
             - containerPort: 8080
 
 ---
-apiVersion: v1
+# apiVersion: v1
 
-kind: Service
+# kind: Service
 
-metadata:
-  name: sorton-flask-app
-  namespace: sorton-flask
+# metadata:
+#   name: sorton-flask-app
+#   namespace: sorton-flask
 
-  labels:
-    app: sorton-flask-app
+#   labels:
+#     app: sorton-flask-app
 
-spec:
-  ports:
-    - name: http
+# spec:
+#   ports:
+#     - name: http
 
-      port: 8080
-      targetPort: 8080
+#       port: 443
+#       targetPort: 8080
 
-  selector:
-    app: sorton-flask-app
+#   selector:
+#     app: sorton-flask-app
 
-  type: LoadBalancer
+#   type: LoadBalancer
