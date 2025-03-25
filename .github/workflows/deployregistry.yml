@@ -35,7 +35,7 @@ jobs:
         run: gcloud auth configure-docker ${{ vars.GCP_LOCATION }}-docker.pkg.dev
 
       - name: Build Container
-        run: docker build -t "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:latest" ./
+        run: docker build -t "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}" ./
 
       - name: Push Container to Registry
-        run: docker push "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:latest"
+        run: docker push "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}"
