@@ -12,5 +12,5 @@ def hello_world():
 
 def more_info():
 
-    return "Pleased to meet you"
+    return "Pleased to meet you!"
     
