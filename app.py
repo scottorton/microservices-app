@@ -10,6 +10,7 @@ def hello_world():
 
     return 'Hello, World!'
 
+@app.route('/scott')
 def more_info():
 
     return "Pleased to meet you!"
