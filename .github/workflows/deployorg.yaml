@@ -1,10 +1,11 @@
-name: Push to Artifact Registry - palo org
+name: Push to Artifact Registry - sorton.org
 
 on: [workflow_dispatch]
- 
 
+  
+    
 env:
-  IMAGE_NAME: "flask-demo-app"
+  IMAGE_NAME: "flask-demo-app-sorton.org"
 
 jobs:
   build-and-deploy:
@@ -19,7 +20,7 @@ jobs:
         id: google-auth
         uses: "google-github-actions/auth@v2"
         with:
-          credentials_json: "${{secrets.GOOGLE_CREDENTIALS}}"
+          credentials_json: "${{secrets.GOOGLE_CREDENTIALS_ORG}}"
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
