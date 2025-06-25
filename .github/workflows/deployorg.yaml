@@ -1,15 +1,11 @@
 name: Push to Artifact Registry - sorton.org
 
-on: 
-  push:
-    branches:
-      - main
-    paths:
-      - 'Dockerfile'
-      - '*.py'
+on: [workflow_dispatch]
 
+  
+    
 env:
-  IMAGE_NAME: "flask-demo-app"
+  IMAGE_NAME: "flask-demo-app-sorton.org"
 
 jobs:
   build-and-deploy:
