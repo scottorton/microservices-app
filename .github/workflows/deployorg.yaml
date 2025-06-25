@@ -1,1 +1,41 @@
+name: Push to Artifact Registry - sorton.org
 
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - '*.py'
+
+env:
+  IMAGE_NAME: "flask-demo-app"
+
+jobs:
+  build-and-deploy:
+    name: Build Image and Deploy to Google Artifact Registry
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Google Authenticate
+        id: google-auth
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{secrets.GOOGLE_CREDENTIALS_ORG}}"
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+
+      - name: Configure Docker to use gcloud as a credential helper
+        run: gcloud auth configure-docker ${{ vars.GCP_LOCATION }}-docker.pkg.dev
+
+      - name: Build Container
+        run: docker build -t "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:1.${{ github.run_number }}" ./
+
+      - name: Push Container to Registry
+        run: docker push "${{ vars.AR_URL }}/${{ env.IMAGE_NAME }}:1.${{ github.run_number }}"
